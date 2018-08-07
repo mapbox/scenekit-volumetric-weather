@@ -3,7 +3,7 @@
 //  mapbox-volumes
 //
 //  Created by Jim Martin on 7/31/18.
-//  Copyright © 2018 Jim Martin. All rights reserved.
+//  Copyright © 2018 Mapbox. All rights reserved.
 //
 
 import UIKit
@@ -13,9 +13,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        // This example project does not use storyboards;
+        // link the viewcontroller here instead.
         window = UIWindow(frame: UIScreen.main.bounds)
         let homeViewController = ViewController()
         window?.rootViewController = homeViewController

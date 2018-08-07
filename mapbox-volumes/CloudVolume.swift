@@ -3,7 +3,9 @@
 //  WeatherOverground
 //
 //  Created by Jim Martin on 6/20/18.
-//  Copyright © 2018 Avi Cieplinski. All rights reserved.
+//  Copyright © 2018 Mapbox. All rights reserved.
+//
+//  Create volumetric clouds.
 //
 
 import Foundation
@@ -25,7 +27,7 @@ class CloudVolume: SCNNode, MGLMapViewDelegate {
         super.init()
     }
     
-    convenience init( minLat: Double, maxLat: Double, minLon: Double, maxLon: Double) {
+    convenience init(minLat: Double, maxLat: Double, minLon: Double, maxLon: Double) {
         self.init()
         
         self.minLat = minLat
@@ -36,32 +38,29 @@ class CloudVolume: SCNNode, MGLMapViewDelegate {
         setGeometry()
         setCloudShader()
     }
+    
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
     
-    private func setGeometry(){
-        
-        //we assume a 1x1x1 cube, but other shapes would work as well.
+    // We assume a 1x1x1 cube, but other shapes would work as well.
+    private func setGeometry() {
         self.geometry = SCNBox(width: 1, height: 1, length: 1, chamferRadius: 0.0)
-        
     }
     
-    private func setCloudShader(){
-        
-        //create cloud material
+    private func setCloudShader() {
+        // Create cloud material
         let cloudMaterial = SCNMaterial()
         self.geometry?.firstMaterial = cloudMaterial
         
-        
-        //set shader program
+        // Set shader program
         let program = SCNProgram()
-        program.fragmentFunctionName = "cloudFragment" //in Shaders/Programs/clouds.metal
-        program.vertexFunctionName = "cloudVertex"     //in Shaders/Programs/clouds.metal
-        program.isOpaque = false;
+        program.fragmentFunctionName = "cloudFragment" // In Shaders/Programs/clouds.metal
+        program.vertexFunctionName = "cloudVertex"     // In Shaders/Programs/clouds.metal
+        program.isOpaque = false
         cloudMaterial.program = program
         
-        //set noise texture
+        // Set noise texture
         let noiseImage  = UIImage(named: "art.scnassets/softNoise.png")!
         let noiseImageProperty = SCNMaterialProperty(contents: noiseImage)
         cloudMaterial.setValue(noiseImageProperty, forKey: "noiseTexture")
@@ -70,14 +69,13 @@ class CloudVolume: SCNNode, MGLMapViewDelegate {
         let intImageProperty = SCNMaterialProperty(contents: intImage)
         cloudMaterial.setValue(intImageProperty, forKey: "interferenceTexture")
         
-        
-        //setup cloud map
+        // Set up cloud map
         debugPlane = SCNNode(geometry: SCNPlane(width: 1, height: 1))
-            //offset the plane so that it's visible below the volume node
+            // Offset the plane so that it's visible below the volume node
             debugPlane.position = SCNVector3Make(0, -1, 0)
-            //rotate it to match the orientation of the volume node's samples
+            // Rotate it to match the orientation of the volume node's samples
             debugPlane.eulerAngles = SCNVector3Make(-Float.pi / 2, 0, 0)
-            //cull the front, so that it's only visible from below.
+            // Cull the front, so that it's only visible from below
             debugPlane.geometry?.firstMaterial?.cullMode = .front
         self.addChildNode(debugPlane)
         
@@ -90,24 +88,21 @@ class CloudVolume: SCNNode, MGLMapViewDelegate {
             mapView.delegate = self
             mapView.isUserInteractionEnabled = false
         }
-
-
     }
     
     func mapView(_ mapView: MGLMapView, didFinishLoading style: MGLStyle) {
         self.addCloudRasterTileLayer(style: style)
         
-        //Applying views as material properties may cause a memory leak. see thread: (https://forums.developer.apple.com/message/71497#71497)
+        // Applying views as material properties may cause a memory leak. see thread: (https://forums.developer.apple.com/message/71497#71497)
         debugPlane.geometry?.firstMaterial?.diffuse.contents = mapView
         let densityProperty = SCNMaterialProperty(contents: mapView)
         self.geometry?.firstMaterial?.setValue(densityProperty, forKey: "densityMap")
-        
     }
     
     private func addCloudRasterTileLayer(style: MGLStyle) -> Void {
         // Add the raster source layer from real earth (http://realearth.ssec.wisc.edu/)
-        // documentation (http://realearth.ssec.wisc.edu/doc/)
-        // not maintained by mapbox
+        // Documentation (http://realearth.ssec.wisc.edu/doc/)
+        // Not maintained by Mapbox
         let cloudTileURLTemplate = "https://re.ssec.wisc.edu/api/image?products=G16-ABI-FD-BAND02&x={x}&y={y}&z={z}&client=RealEarth&device=Browser"
         let source = MGLRasterTileSource(identifier: "cloudcover", tileURLTemplates: [cloudTileURLTemplate], options: [ .tileSize: 256 ])
         let rasterLayer = MGLRasterStyleLayer(identifier: "cloudcover", source: source)
