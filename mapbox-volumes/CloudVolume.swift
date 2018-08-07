@@ -1,6 +1,6 @@
 //
 //  CloudVolume.swift
-//  WeatherOverground
+//  mapbox-volumes
 //
 //  Created by Jim Martin on 6/20/18.
 //  Copyright © 2018 Mapbox.

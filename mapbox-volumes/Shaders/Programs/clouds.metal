@@ -1,10 +1,10 @@
 //
 //  clouds.metal
-//  learning-scenekit
+//  mapbox-volumes
 //
-//  Created by Jim Martin on 6/14/18.
-//  Copyright © 2018 Jim Martin. All rights reserved.
-//
+//  Created by Jim Martin on 7/31/18.
+//  Copyright © 2018 Mapbox.
+
 
 #include <metal_stdlib>
 using namespace metal;
