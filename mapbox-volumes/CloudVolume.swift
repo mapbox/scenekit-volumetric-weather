@@ -3,7 +3,7 @@
 //  WeatherOverground
 //
 //  Created by Jim Martin on 6/20/18.
-//  Copyright © 2018 Mapbox. All rights reserved.
+//  Copyright © 2018 Mapbox.
 //
 //  Create volumetric clouds.
 //

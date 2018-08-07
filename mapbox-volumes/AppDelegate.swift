@@ -3,7 +3,7 @@
 //  mapbox-volumes
 //
 //  Created by Jim Martin on 7/31/18.
-//  Copyright © 2018 Mapbox. All rights reserved.
+//  Copyright © 2018 Mapbox.
 //
 
 import UIKit

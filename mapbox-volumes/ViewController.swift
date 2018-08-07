@@ -3,7 +3,7 @@
 //  mapbox-volumes
 //
 //  Created by Jim Martin on 7/31/18.
-//  Copyright © 2018 Mapbox. All rights reserved.
+//  Copyright © 2018 Mapbox.
 //
 //  Create a SceneKit view with a 3D map of San Francisco
 //  and volumetric clouds above it.
