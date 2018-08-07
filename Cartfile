@@ -1,0 +1,2 @@
+binary "https://www.mapbox.com/ios-sdk/Mapbox-iOS-SDK.json" ~> 4.1
+github "mapbox/mapbox-scenekit" "master"
