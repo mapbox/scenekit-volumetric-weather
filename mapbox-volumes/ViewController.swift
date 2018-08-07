@@ -64,7 +64,7 @@ class ViewController: UIViewController, SCNSceneRendererDelegate {
     func createClouds() {
         cloudNode = CloudVolume(minLat:minLat, maxLat: maxLat,
                                 minLon: minLon, maxLon: maxLon)
-        cloudNode.scale = SCNVector3(x: 3.8, y: 0.1, z: 3.8) // Flatten the volume into a thin layer
+        cloudNode.scale = SCNVector3(x: 3.8, y: 0.2, z: 3.8) // Flatten the volume into a thin layer
         scene.rootNode.addChildNode(cloudNode)
     }
     
@@ -75,7 +75,7 @@ class ViewController: UIViewController, SCNSceneRendererDelegate {
         
         if let terrainNode = terrainNode {
             terrainNode.scale = terrainNodeScale // Scale down map
-            terrainNode.position = SCNVector3Make(0, -0.3, 0) // Place map slightly below clouds
+            terrainNode.position = SCNVector3Make(0, -0.15, 0) // Place map slightly below clouds
             terrainNode.geometry?.materials = defaultMaterials() // Add default materials
             scene.rootNode.addChildNode(terrainNode)
             

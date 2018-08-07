@@ -101,7 +101,7 @@ float4 RayMarch(Ray ray, float4 nodePosition, float time, texture2d<float, acces
     float3 initialPosition = ray.origin;
     float3 samplePosition = initialPosition;
     
-    //raymarching parameters
+    // Raymarching parameters
     //initial direction, *0.01 to make the skipstep values easier to modify/experiment with
     float3 offset = initialDirection * 0.01;
     //skipstep: the distance travelled at each step. Larger numbers are more performant, but lower quality.
@@ -141,7 +141,7 @@ float4 RayMarch(Ray ray, float4 nodePosition, float time, texture2d<float, acces
     //measure initial position from the sampleposition snapped to cloud boundaries
     initialPosition = samplePosition;
     
-    // initialize offset before loop, in case we want to apply a default
+    //initialize offset before loop, in case we want to apply a default
     float3 newOffset = offset;
     
     //define multiple samplers, one for each texture
@@ -219,7 +219,7 @@ float4 RayMarch(Ray ray, float4 nodePosition, float time, texture2d<float, acces
         samplePosition += newOffset;
         
         //set a max opacity for the output color, and stop marching if it's reached.
-        if(outputColor.a >= .7)
+        if(outputColor.a >= .8)
             break;
        
     };
