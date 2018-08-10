@@ -215,7 +215,7 @@ float4 RayMarch(Ray ray, float4 nodePosition, float time, texture2d<float, acces
         
         //move the sample position to the new offset based on the skipstep and the opacity of the current sample
         //more opaque samples step less, to create better definition around the edges.
-        newOffset = offset * (skipStep) * ( 1.1-textureSample.a );
+        newOffset = offset * (skipStep) * ( 1.0 - (outputColor.a * 0.8));
         samplePosition += newOffset;
         
         //set a max opacity for the output color, and stop marching if it's reached.

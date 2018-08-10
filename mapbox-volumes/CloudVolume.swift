@@ -103,6 +103,8 @@ class CloudVolume: SCNNode, MGLMapViewDelegate {
         // Add the raster source layer from real earth (http://realearth.ssec.wisc.edu/)
         // Documentation (http://realearth.ssec.wisc.edu/doc/)
         // Not maintained by Mapbox
+        
+        // This requests the *most recent* ir imagery, and may appear incorrect after sunset locally.
         let cloudTileURLTemplate = "https://re.ssec.wisc.edu/api/image?products=G16-ABI-FD-BAND02&x={x}&y={y}&z={z}&client=RealEarth&device=Browser"
         let source = MGLRasterTileSource(identifier: "cloudcover", tileURLTemplates: [cloudTileURLTemplate], options: [ .tileSize: 256 ])
         let rasterLayer = MGLRasterStyleLayer(identifier: "cloudcover", source: source)
