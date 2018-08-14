@@ -2,7 +2,7 @@
 
 ### Overview
 
-This project demonstrates how to create volumetric effects from map data using a Metal shader with SCNProgram. It's a companion to [this post] about volumetric weather.
+This project demonstrates how to create volumetric effects from map data using a Metal shader with SCNProgram. It's a companion to [this post](https://blog.mapbox.com/3d-weather-with-scenekit-aka-karl-the-fog-in-ar-931cff1c1c7c) about volumetric weather.
 
 The example uses the most recent data from [Real Earth](http://realearth.ssec.wisc.edu/) to render volumetric clouds over San Francisco.
 
