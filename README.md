@@ -31,4 +31,4 @@ Install the Mapbox SceneKit using [Carthage](https://github.com/Carthage/Carthag
 
 ### License
 
-scenekit-volumetric-weather is [licensed under BSD2](https://github.com/mapbox/scenekit-volumetric-weather/blob/master/LICENSE.md). Attribution is not required, but definitely welcome! If you build something with this code, please mention it in your readme so that others can learn about the resource.
+scenekit-volumetric-weather is [licensed under BSD2](https://github.com/mapbox/scenekit-volumetric-weather/blob/master/LICENSE.md). If you build something with this code, please mention it in your readme so that others can learn about the resource.
